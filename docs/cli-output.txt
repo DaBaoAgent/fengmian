@@ -1,0 +1,32 @@
+$ python fengmian.py gate --dir "001 会飞的中国人" --dry-run
+{
+  "root": "D:\\@kaifa\\Auto-Video\\laolang\\out\\001 会飞的中国人",
+  "allowed": [
+    "会飞的中国人_全片.mp4",
+    "发布信息.txt",
+    "封面-3比4.png",
+    "封面-4比3.png",
+    "源文件/"
+  ],
+  "extras": [],
+  "missing": [],
+  "removed": []
+}
+
+$ python fengmian.py validate --dir "001 会飞的中国人"
+{
+  "root": "D:\\@kaifa\\Auto-Video\\laolang\\out\\001 会飞的中国人",
+  "file_count": 1,
+  "valid_count": 1,
+  "invalid_count": 0,
+  "results": [
+    {
+      "file": "发布信息.txt",
+      "valid": true,
+      "title": "会飞的中国人：90年前骑车跑赢飞机",
+      "issues": []
+    }
+  ]
+}
+
+$ # 产出：封面-4比3.png 封面-3比4.png 发布信息.txt + 源文件\

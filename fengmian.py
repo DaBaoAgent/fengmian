@@ -126,12 +126,12 @@ def cmd_covers(args) -> int:
     if args.backend != "ark":
         print("当前后端只支持 ark；未配置密钥时直接使用封面提示词-4比3.txt / -3比4.txt 手动出图。")
         return 0
-    meta = json.loads((out_dir / "封面元信息.json").read_text(encoding="utf-8"))
+    assets = out_dir / "源文件"   # build 把提示词与元信息都写在 源文件/
     cmd = [
         "node", str(ROOT / "scripts" / "gen_covers_ark.mjs"),
         "--out", str(out_dir),
-        "--prompt43", str(out_dir / "封面提示词-4比3.txt"),
-        "--prompt34", str(out_dir / "封面提示词-3比4.txt"),
+        "--prompt43", str(assets / "封面提示词-4比3.txt"),
+        "--prompt34", str(assets / "封面提示词-3比4.txt"),
     ]
     print(" ".join(cmd))
     return subprocess.call(cmd)

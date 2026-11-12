@@ -2,6 +2,28 @@
 
 从 Auto-Video 的 **tuiyan 管线**里把「发布层」单独拆出来的独立小项目：喂一份视频文案（字幕 srt / 口播稿 txt），直接产出 **两张封面（4:3 / 3:4）+ 一份可校验的发布信息**，并在交付前过一道目录门禁。
 
+## 使用示例
+
+**预览图**：001《会飞的中国人》的两张正式封面（同一份字幕、同一套提示词出的 4:3 与 3:4）。
+
+| 4:3 · 2048×1536 | 3:4 · 1536×2048 |
+|---|---|
+| ![封面 4:3](docs/preview-4x3.jpg) | ![封面 3:4](docs/preview-3x4.jpg) |
+
+两张并排看版头层级与画面关系：
+
+![示例封面：4:3 与 3:4](docs/example-covers.png)
+
+交付前跑门禁与校验（真实命令行输出）：
+
+![示例命令：gate 与 validate](docs/example-cli.png)
+
+以上图由 `scripts/make_readme_assets.py` 用真实产物与真实输出渲染，`docs/preview-*.jpg` 是原图按长边 1800px 压缩的展示版（成品仍以 2048×1536 / 1536×2048 的 PNG 为准）。重新生成：
+
+```powershell
+python scripts/make_readme_assets.py --covers "…\001 会飞的中国人" --cli docs\cli-output.txt --out docs
+```
+
 ## 一、来源与边界
 
 | 克隆自 | 作用 | 本项目的落点 |
@@ -128,7 +150,7 @@ python fengmian.py validate --dir "…\001 会飞的中国人"
 
 ## 九、依赖
 
-Python 3.10+、`Pillow`（`save_cover.py` 归一尺寸用）；`node` 18+（走 Ark 出图时）。Ark 出图需环境变量 `ARK_API_KEY`，模型可用 `ARK_MODEL` 覆盖（默认 `doubao-seedream-4-0-250828`）。
+Python 3.10+、`Pillow`（`save_cover.py` 归一尺寸、`make_readme_assets.py` 渲染示例图用）；`node` 18+（走 Ark 出图时）。Ark 出图需环境变量 `ARK_API_KEY`，模型可用 `ARK_MODEL` 覆盖（默认 `doubao-seedream-4-0-250828`）。
 
 ## 十、目录
 
@@ -144,7 +166,14 @@ fengmian/
 ├─ scripts/
 │  ├─ gen_covers_ark.mjs        # 方舟 Seedream 出图（移植自 tuiyan）
 │  ├─ validate_publication_info.py  # 原样移植自 tuiyan
-│  └─ save_cover.py            # 远端图落盘 + 尺寸归一
+│  ├─ save_cover.py            # 远端图落盘 + 尺寸归一
+│  └─ make_readme_assets.py    # 渲染 README 示例图
+├─ docs/                       # 示例图与命令行输出文本
 ├─ output/                     # 示例产物（001 会飞的中国人）
+├─ LICENSE                     # MIT
 └─ README.md
 ```
+
+## 十一、许可
+
+[MIT](LICENSE) © 2026 DaBaoAgent。移植自 Auto-Video 项目的脚本沿用其原始许可；示例封面中出现的字体与画面风格版权归各自权利人所有。
